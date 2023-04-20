@@ -1,0 +1,72 @@
+{
+    "logging" :
+    {
+        "level" : "debug",
+        "console" : "true",
+        "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
+        "dlt" : "false"
+    },
+    "applications" :
+    [
+        {
+            "name" : "vsomeip-service",
+            "id" : "0x0001"
+        },
+        {
+            "name" : "vsomeip-client",
+            "id" : "0xFF51"
+        }
+    ],
+    "services" :
+    [
+        {
+            "service" : "1",
+            "instance" : "3073",
+            "reliable":
+            {
+                "port":"51218",
+                "enable-magic-cookies":"false"
+            },
+            "events" :
+            [
+                {
+                    "event" :  "0x8001",
+                    "is_field" :  "false",
+                    "is_reliable" :  "true"
+                }
+            ],
+            "eventgroups" :
+            [
+                {
+                    "eventgroup" : "0x1101",
+                    "events" :  "0x8001"
+                }
+            ]
+        },
+        {
+            "service" : "3",
+            "instance" : "3073",
+            "unreliable": "51219",
+            "events" :
+            [
+                {
+                    "event" :  "0x8001",
+                    "is_field" :  "false",
+                    "is_reliable" :  "false"
+                }
+            ],
+            "eventgroups" :
+            [
+                {
+                    "eventgroup" : "0x1101",
+                    "events" :  "0x8001",
+                    "is_multicast"  : "true"
+                }
+            ]
+        }
+    ],
+    "service-discovery" :
+    {
+        "enable" : "false"
+    }
+}
